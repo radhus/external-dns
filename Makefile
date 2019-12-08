@@ -64,5 +64,8 @@ build.docker:
 build.mini:
 	docker build --rm --tag "$(IMAGE):$(VERSION)-mini" -f Dockerfile.mini .
 
+buildx.mini:
+	docker buildx build --tag "$(IMAGE):$(VERSION)-mini" --platform linux/amd64,linux/arm/v7,linux/arm64 --output "type=image,push=true" --file Dockerfile.mini .
+
 clean:
 	@rm -rf build
